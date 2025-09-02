@@ -162,8 +162,8 @@ const HeroSection = () => {
           />
         </a>
       </div>
-    </nav>
+    </div>
   );
 };
 
-export default Navigation;
+export default HeroSection;
