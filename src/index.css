@@ -2,26 +2,115 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
-
 @layer base {
   :root {
-   
-  }
-
-  .dark {
-
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+    --card: 0 0% 5%;
+    --card-foreground: 0 0% 100%;
+    --popover: 0 0% 5%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 24 100% 80%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 60%;
+    --accent: 0 0% 15%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 24 100% 80%;
+    --radius: 0.5rem;
+    
+    /* Custom colors for Creem */
+    --creem-peach: 24 100% 80%;
+    --creem-orange: 17 100% 73%;
+    --creem-neutral-900: 0 0% 11%;
+    --creem-neutral-800: 0 0% 15%;
+    --creem-neutral-700: 0 0% 25%;
   }
 }
 
-@layer base {
-  * {
-    @apply border-border;
+@layer components {
+  .animate-scroll {
+    animation: scroll 20s linear infinite;
   }
+  
+  .animate-spotlight {
+    animation: spotlight 2s ease-in-out infinite alternate;
+  }
+  
+  .drop-shadow-glowWhite {
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+  }
+  
+  .drop-shadow-glowPrimary {
+    filter: drop-shadow(0 0 10px hsl(var(--creem-peach)));
+  }
+  
+  .bg-noise {
+    background-image: url('/noise.webp');
+    background-size: 30%;
+  }
+  
+  .squarePattern {
+    background-image: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.1) 1px, transparent 0);
+    background-size: 20px 20px;
+  }
+  
+  .hero-button {
+    @apply bg-neutral-900 relative z-10 hover:bg-black/90 border border-transparent text-white text-sm md:text-sm transition font-medium duration-200 rounded-full px-4 py-2 flex items-center justify-center;
+    box-shadow: 0px -1px 0px 0px rgba(255, 255, 255, 0.25) inset, 0px 1px 0px 0px rgba(255, 255, 255, 0.25) inset;
+  }
+  
+  .nav-link {
+    @apply flex items-center justify-center text-sm leading-[110%] px-4 py-2 rounded-md hover:bg-neutral-800 hover:text-primary text-primary;
+  }
+  
+  .feature-card {
+    @apply relative rounded-2xl overflow-hidden bg-black min-h-[300px];
+    background-image: radial-gradient(88% 100% at top, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0));
+    box-shadow: 0 10px 32px rgba(34, 42, 53, 0.12), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.05), 0 4px 6px rgba(34, 42, 53, 0.08), 0 24px 108px rgba(47, 48, 55, 0.10);
+  }
+  
+  .feature-badge {
+    @apply space-x-1 min-w-24 flex justify-center items-center bg-neutral-900 px-2 py-1 text-sm rounded-md text-primary;
+    box-shadow: 0px 2px 3px -1px rgba(0,0,0,0.1), 0px 1px 0px 0px rgba(25,28,33,0.02), 0px 0px 0px 1px rgba(25,28,33,0.08);
+  }
+  
+  .grid-bg {
+    @apply fixed inset-0 min-h-screen w-full pointer-events-none z-0;
+    opacity: 0.18;
+  }
+  
+  .announcement-button {
+    @apply bg-neutral-700 no-underline group cursor-pointer relative md:shadow-2xl shadow-zinc-900 rounded-full p-px text-[10px] sm:text-xs font-semibold leading-6 text-neutral-300 inline-block w-fit mx-auto;
+  }
+}
 
-  body {
-    @apply bg-background text-foreground;
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
   }
+  100% {
+    transform: translateX(calc(-50% - 1rem));
+  }
+}
+
+@keyframes spotlight {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5);
+  }
+  100% {
+    opacity: 0.18;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+body {
+  @apply bg-black antialiased h-full w-full;
 }
